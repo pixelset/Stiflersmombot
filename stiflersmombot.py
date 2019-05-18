@@ -154,20 +154,19 @@ def sendToAI(message):
     return response
 
 
-bot.polling(timeout=5)
-
 # Schedule
 def sendRandomHint():
     bot.send_message(126335636, hints[randint(0, len(hints) - 1)])
-    print('Send...')
 
 
 def initSchedule():
-    schedule.every(5).seconds.do(sendRandomHint)
-    print('Schedlue Init')
+    schedule.every(5).minute.do(sendRandomHint)
 
     while True:
         schedule.run_pending()
         time.sleep(1)
 
+
+#Launch
 initSchedule()
+bot.polling(timeout=5)
