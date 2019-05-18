@@ -140,6 +140,7 @@ def botPrivateReply(message):
     else:
         bot.reply_to(message, text='Прости, я тебя не поняла. Я ведь бот...')
 
+
 def sendToAI(message):
     request = apiai.ApiAI(AITOKEN).text_request()
     request.lang = 'ru'
@@ -150,6 +151,19 @@ def sendToAI(message):
     response = responseJson['result']['fulfillment']['speech']
     return response
 
+
 bot.polling(timeout=5)
 
-print(bot)
+# Schedule
+def sendRandomHint():
+    bot.send_message(126335636, hints[randint(0, len(hints) - 1)])
+
+
+def initSchedule():
+    schedule.every(5).seconds.do(sendRandomHint)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+initSchedule()
