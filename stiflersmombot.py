@@ -158,9 +158,8 @@ def sendToAI(message):
 def sendRandomHint():
     bot.send_message(126335636, hints[randint(0, len(hints) - 1)])
 
-
 def initSchedule():
-    schedule.every(5).minute.do(sendRandomHint)
+    schedule.every(1).minutes.do(sendRandomHint)
 
     while True:
         schedule.run_pending()
