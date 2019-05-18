@@ -1,5 +1,7 @@
 import telebot
 import apiai, json
+import schedule
+import time
 
 from telebot.types import Message
 from random import randint
