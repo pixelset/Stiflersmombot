@@ -167,5 +167,5 @@ def initSchedule():
 
 
 #Launch
-initSchedule()
+#initSchedule()
 bot.polling(timeout=5)
