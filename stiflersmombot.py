@@ -121,6 +121,10 @@ def command_hendler (message: Message):
 @bot.message_handler(content_types=['text'])
 def bot_reply (message: Message):
 
+    if '133' in message.text:
+        sendInsight(message)
+        return
+
     if message.chat.type == 'private':
         botPrivateReply(message)
         return
@@ -165,6 +169,18 @@ def initSchedule():
         schedule.run_pending()
         time.sleep(1)
 
+
+def sendInsight(message):
+    response = requests.post("https://obscure-everglades-81798.herokuapp.com/api/v1/insights")
+
+    json_data = response.json()
+
+    insite = json_data['text']
+
+    try:
+        bot.send_message(message.chat.id, text=insite)
+    except Exception as e:
+        bot.reply_to(message, 'Oooops, похоже у меня закончились мудрости! Может вы придумаете новые?')
 
 #Launch
 #initSchedule()
