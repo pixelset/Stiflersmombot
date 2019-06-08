@@ -3,6 +3,8 @@ import apiai, json
 import schedule
 import time
 
+import requests
+
 from telebot.types import Message
 from random import randint
 
