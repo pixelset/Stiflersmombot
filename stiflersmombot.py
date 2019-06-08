@@ -118,14 +118,11 @@ bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['insight'])
 def command_hendler (message: Message):
-    bot.send_message(message.chat.id, hints[randint(0, len(hints) - 1)])
+    #bot.send_message(message.chat.id, hints[randint(0, len(hints) - 1)])
+    sendInsight(message)
 
 @bot.message_handler(content_types=['text'])
 def bot_reply (message: Message):
-
-    if '133' in message.text:
-        sendInsight(message)
-        return
 
     if message.chat.type == 'private':
         botPrivateReply(message)
